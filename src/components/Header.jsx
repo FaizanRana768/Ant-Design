@@ -1,6 +1,6 @@
 import React from "react";
-import { Avatar, Button, Layout } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
+import { Avatar, Button, Input, Layout } from "antd";
+import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
 import "../styles/Header.css";
 import avatarImg from '../../src/assets/1721731820291.jpg'
 const { Header: AntHeader } = Layout;
@@ -13,7 +13,8 @@ const Header = ({ isMobile, setSidebarVisible }) => {
         <span>Official Website</span>
       </div>
       <div className="avatar-img">
-        <Avatar src={avatarImg} />
+        <Input placeholder="Search" prefix={<SearchOutlined />} />
+        <Avatar src={avatarImg} style={{objectFit:'cover',width:'35px',height:'35px'}}/>
       </div>
       {isMobile && (
         <Button
