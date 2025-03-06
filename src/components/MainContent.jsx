@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import AboutUs from "../pages/AboutUs";
 import Gallery from "../pages/Gallery";
 import ContactUs from "../pages/ContactUs";
+import Blog from "../pages/Blog";
 
 const { Content } = Layout;
 
@@ -13,7 +14,7 @@ const routes = [
   { path: "/about", element: <AboutUs /> },
   { path: "/gallery", element: <Gallery /> },
   { path: "/contact", element: <ContactUs /> },
-  { path: "/blog", element: <h2>Blog Page</h2> },
+  { path: "/blog", element: <Blog /> },
 ];
 
 const MainContent = () => {
