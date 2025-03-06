@@ -4,8 +4,9 @@ import { Layout } from "antd";
 import "antd/dist/reset.css";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import AntFooter from "./components/Footer";
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 const App = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -39,9 +40,7 @@ const App = () => {
                 <Route path="/blog" element={<h2>Blog Page</h2>} />
               </Routes>
             </Content>
-            <Footer style={{ textAlign: "center" }}>
-              Ant Design ©{new Date().getFullYear()} Created by Ant UED
-            </Footer>
+           <AntFooter />
           </Layout>
         </Layout>
       </Layout>
