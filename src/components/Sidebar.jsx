@@ -12,6 +12,7 @@ const Sidebar = ({ isMobile, sidebarVisible, setSidebarVisible }) => {
                 position: isMobile ? "fixed" : "relative",
                 left: sidebarVisible || !isMobile ? 0 : "-100%",
                 top: 0,
+                height: "100vh",
                 zIndex: 1000,
                 width: isMobile ? "100%" : 250,
                 transition: "left 0.3s ease-in-out",
