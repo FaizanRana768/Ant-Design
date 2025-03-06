@@ -20,24 +20,15 @@ const sidebarMenuItems = [
   label: <Link to={`/nav${item.key}`}>{item.label}</Link>,
 }));
 
-const headerMenuItems = [
-  { key: "about", label: <Link to="/about">About</Link> },
-  { key: "gallery", label: <Link to="/gallery">Gallery</Link> },
-  { key: "contact", label: <Link to="/contact">Contact Us</Link> },
-  { key: "blog", label: <Link to="/blog">Blog</Link> },
-];
 
 const App = () => {
   return (
     <Router>
       <Layout style={{ height: "100vh" }}>
         <Header style={{ padding: "0 20px", background: "#001529", display: "flex", alignItems: "center" }}>
-          <div style={{ flex: 1, fontSize: "18px", fontWeight: "bold" }}>
-            <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-              Company Logo
-            </Link>
-          </div>
-          <Menu theme="dark" mode="horizontal" items={headerMenuItems} style={{ background: "transparent" }} />
+         <div>
+          
+         </div>
         </Header>
 
         <Layout>
