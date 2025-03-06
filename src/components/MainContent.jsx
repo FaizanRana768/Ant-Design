@@ -3,13 +3,14 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import AboutUs from "../pages/AboutUs";
+import Gallery from "../pages/Gallery";
 
 const { Content } = Layout;
 
 const routes = [
   { path: "/", element: <Home /> },
   { path: "/about", element: <AboutUs /> },
-  { path: "/gallery", element: <h2>Gallery Page</h2> },
+  { path: "/gallery", element: <Gallery /> },
   { path: "/contact", element: <h2>Contact Page</h2> },
   { path: "/blog", element: <h2>Blog Page</h2> },
 ];
