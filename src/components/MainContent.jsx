@@ -4,15 +4,21 @@ import { Routes, Route } from "react-router-dom";
 
 const { Content } = Layout;
 
+const routes = [
+  { path: "/", element: <h2>Home Page</h2> },
+  { path: "/about", element: <h2>About Page</h2> },
+  { path: "/gallery", element: <h2>Gallery Page</h2> },
+  { path: "/contact", element: <h2>Contact Page</h2> },
+  { path: "/blog", element: <h2>Blog Page</h2> },
+];
+
 const MainContent = () => {
   return (
-    <Content style={{ padding: "20px", flexGrow: 1, backgroundColor: "#f0f2f5" }}>
+    <Content style={{ padding: "20px" }}>
       <Routes>
-        <Route path="/" element={<h2>Home Page</h2>} />
-        <Route path="/about" element={<h2>About Page</h2>} />
-        <Route path="/gallery" element={<h2>Gallery Page</h2>} />
-        <Route path="/contact" element={<h2>Contact Page</h2>} />
-        <Route path="/blog" element={<h2>Blog Page</h2>} />
+        {routes.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
+        ))}
       </Routes>
     </Content>
   );
