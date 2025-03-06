@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Layout } from "antd";
 import "antd/dist/reset.css";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import AntFooter from "./components/Footer";
-
-const { Content } = Layout;
+import WebFooter from "./components/Footer";
+import MainContent from "./components/MainContent";
 
 const App = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 668);
   const [sidebarVisible, setSidebarVisible] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-      if (window.innerWidth > 768) {
+      setIsMobile(window.innerWidth <= 668);
+      if (window.innerWidth > 668) {
         setSidebarVisible(false);
       }
     };
@@ -28,19 +27,15 @@ const App = () => {
     <Router>
       <Layout style={{ minHeight: "100vh" }}>
         <Header isMobile={isMobile} setSidebarVisible={setSidebarVisible} />
-        <Layout hasSider>
-          <Sidebar isMobile={isMobile} sidebarVisible={sidebarVisible} setSidebarVisible={setSidebarVisible} />
+        <Layout>
+          <Sidebar
+            isMobile={isMobile}
+            sidebarVisible={sidebarVisible}
+            setSidebarVisible={setSidebarVisible}
+          />
           <Layout style={{ flex: 1 }}>
-            <Content style={{ padding: "20px", flex: 1 }}>
-              <Routes>
-                <Route path="/" element={<h2>Home Page</h2>} />
-                <Route path="/about" element={<h2>About Page</h2>} />
-                <Route path="/gallery" element={<h2>Gallery Page</h2>} />
-                <Route path="/contact" element={<h2>Contact Page</h2>} />
-                <Route path="/blog" element={<h2>Blog Page</h2>} />
-              </Routes>
-            </Content>
-           <AntFooter />
+            <MainContent />
+            <WebFooter />
           </Layout>
         </Layout>
       </Layout>
