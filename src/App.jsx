@@ -1,30 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {
-  HomeOutlined,
-  InfoCircleOutlined,
-  PictureOutlined,
-  PhoneOutlined,
-  ReadOutlined,
-  CloseOutlined,
-} from "@ant-design/icons";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { CloseOutlined } from "@ant-design/icons";
 import { Button, Layout, Menu } from "antd";
 import "antd/dist/reset.css";
 import Header from "./components/Header";
+import { sidebarMenuItems } from "./utils/constant";
 
 const { Content, Footer, Sider } = Layout;
-
-const sidebarMenuItems = [
-  { key: "1", icon: <HomeOutlined />, label: "Home", path: "/" },
-  { key: "2", icon: <InfoCircleOutlined />, label: "About", path: "/about" },
-  { key: "3", icon: <PictureOutlined />, label: "Gallery", path: "/gallery" },
-  { key: "4", icon: <PhoneOutlined />, label: "Contact", path: "/contact" },
-  { key: "5", icon: <ReadOutlined />, label: "Blog", path: "/blog" },
-].map((item) => ({
-  key: item.key,
-  icon: item.icon,
-  label: <Link to={item.path}>{item.label}</Link>,
-}));
 
 const App = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -44,9 +26,8 @@ const App = () => {
 
   return (
     <Router>
-      <Layout style={{ height: "100vh" }}>
+      <Layout>
         <Header isMobile={isMobile} setSidebarVisible={setSidebarVisible} />
-
         <Layout>
           <Sider
             style={{
