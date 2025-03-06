@@ -1,9 +1,11 @@
 import React from "react";
 import { Link, BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
+  HomeOutlined,
+  InfoCircleOutlined,
+  PictureOutlined,
+  PhoneOutlined,
+  ReadOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu } from "antd";
 import "antd/dist/reset.css";
@@ -11,24 +13,30 @@ import "antd/dist/reset.css";
 const { Header, Content, Footer, Sider } = Layout;
 
 const sidebarMenuItems = [
-  { key: "1", icon: <UserOutlined />, label: "User" },
-  { key: "2", icon: <VideoCameraOutlined />, label: "Video" },
-  { key: "3", icon: <UploadOutlined />, label: "Upload" },
+  { key: "1", icon: <HomeOutlined />, label: "Home", path: "/" },
+  { key: "2", icon: <InfoCircleOutlined />, label: "About", path: "/about" },
+  { key: "3", icon: <PictureOutlined />, label: "Gallery", path: "/gallery" },
+  { key: "4", icon: <PhoneOutlined />, label: "Contact", path: "/contact" },
+  { key: "5", icon: <ReadOutlined />, label: "Blog", path: "/blog" },
 ].map((item) => ({
   key: item.key,
   icon: item.icon,
-  label: <Link to={`/nav${item.key}`}>{item.label}</Link>,
+  label: <Link to={item.path}>{item.label}</Link>,
 }));
-
 
 const App = () => {
   return (
     <Router>
       <Layout style={{ height: "100vh" }}>
-        <Header style={{ padding: "0 20px", background: "#001529", display: "flex", alignItems: "center" }}>
-         <div>
-          
-         </div>
+        <Header
+          style={{
+            padding: "0 20px",
+            background: "#001529",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ color: "white", fontSize: "20px" }}>My Website</div>
         </Header>
 
         <Layout>
@@ -39,7 +47,12 @@ const App = () => {
             onCollapse={(collapsed, type) => console.log(collapsed, type)}
             style={{ padding: "20px 0px" }}
           >
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]} items={sidebarMenuItems} />
+            <Menu
+              theme="dark"
+              mode="inline"
+              defaultSelectedKeys={["1"]}
+              items={sidebarMenuItems}
+            />
           </Sider>
           <Layout>
             <Content style={{ padding: "20px" }}>
@@ -49,9 +62,6 @@ const App = () => {
                 <Route path="/gallery" element={<h2>Gallery Page</h2>} />
                 <Route path="/contact" element={<h2>Contact Page</h2>} />
                 <Route path="/blog" element={<h2>Blog Page</h2>} />
-                <Route path="/nav1" element={<h2>User Section</h2>} />
-                <Route path="/nav2" element={<h2>Video Section</h2>} />
-                <Route path="/nav3" element={<h2>Upload Section</h2>} />
               </Routes>
 
               <Button type="dashed" loading>
