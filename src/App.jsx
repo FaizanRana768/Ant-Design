@@ -1,27 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import React, { useMemo } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Layout } from "antd";
 import "antd/dist/reset.css";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import WebFooter from "./components/Footer";
-import MainContent from "./components/MainContent";
+import Home from "./pages/Home";
+import AboutUs from "./pages/AboutUs";
+import Gallery from "./pages/Gallery";
+import ContactUs from "./pages/ContactUs";
+import Blog from "./pages/Blog";
+import { useResponsive } from "./hooks/responsiveHook";
 
 const App = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 668);
-  const [sidebarVisible, setSidebarVisible] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 668);
-      if (window.innerWidth > 668) {
-        setSidebarVisible(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const { Content } = Layout;
+  const { isMobile, sidebarVisible, setSidebarVisible } = useResponsive();
+  const routes = useMemo(
+    () => [
+      { path: "/", element: <Home /> },
+      { path: "/about", element: <AboutUs /> },
+      { path: "/gallery", element: <Gallery /> },
+      { path: "/contact", element: <ContactUs /> },
+      { path: "/blog", element: <Blog /> },
+    ],
+    []
+  );
 
   return (
     <Router>
@@ -34,7 +38,13 @@ const App = () => {
             setSidebarVisible={setSidebarVisible}
           />
           <Layout style={{ flex: 1 }}>
-            <MainContent />
+            <Content style={{ padding: "20px" }}>
+              <Routes>
+                {routes.map(({ path, element }) => (
+                  <Route key={path} path={path} element={element} />
+                ))}
+              </Routes>
+            </Content>
             <WebFooter />
           </Layout>
         </Layout>
