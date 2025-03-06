@@ -12,7 +12,7 @@ const Header = ({ isMobile, setSidebarVisible }) => {
         <img src="/src/assets/b874caa9-4458-412a-9ac6-a61486180a62.svg" alt="logo-img" />
         <span>Official Website</span>
       </div>
-      <div>
+      <div className="avatar-img">
         <Avatar src={avatarImg} />
       </div>
       {isMobile && (

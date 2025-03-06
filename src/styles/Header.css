@@ -1,24 +1,31 @@
 .header {
-    padding: 0 20px;
-    background: #001529;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  padding: 0 20px;
+  background: #001529;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-title img {
+  width: 40px;
+  height: 40px;
+}
+
+.header-title {
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.menu-button {
+  font-size: 20px;
+  color: white;
+}
+
+.avatar-img {
+  @media (max-width: 668px) {
+    display: none;
   }
-  .header-title img{
-    width: 40px;
-    height: 40px;
-  }
-  .header-title {
-    color: white;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  
-  .menu-button {
-    font-size: 20px;
-    color: white;
-  }
-  
+}
