@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   HomeOutlined,
@@ -6,11 +6,13 @@ import {
   PictureOutlined,
   PhoneOutlined,
   ReadOutlined,
+  CloseOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu } from "antd";
 import "antd/dist/reset.css";
+import Header from "./components/Header";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 const sidebarMenuItems = [
   { key: "1", icon: <HomeOutlined />, label: "Home", path: "/" },
@@ -25,37 +27,52 @@ const sidebarMenuItems = [
 }));
 
 const App = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      if (window.innerWidth > 768) {
+        setSidebarVisible(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <Router>
       <Layout style={{ height: "100vh" }}>
-        <Header
-          style={{
-            padding: "0 20px",
-            background: "#001529",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <div style={{ color: "white", fontSize: "20px" }}>My Website</div>
-        </Header>
+        <Header isMobile={isMobile} setSidebarVisible={setSidebarVisible} />
 
         <Layout>
           <Sider
-            breakpoint="md"
-            collapsedWidth="0"
-            onBreakpoint={(broken) => console.log(broken)}
-            onCollapse={(collapsed, type) => console.log(collapsed, type)}
-            style={{ padding: "20px 0px" }}
+            style={{
+              position: isMobile ? "fixed" : "relative",
+              left: sidebarVisible || !isMobile ? 0 : "-100%",
+              top: 0,
+              height: "100vh",
+              zIndex: 1000,
+              width: isMobile ? "100%" : 250,
+              transition: "left 0.3s ease-in-out",
+            }}
+            theme="dark"
           >
-            <Menu
-              theme="dark"
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              items={sidebarMenuItems}
-            />
+            {isMobile && (
+              <div style={{ textAlign: "right", padding: "10px" }}>
+                <Button
+                  type="text"
+                  icon={<CloseOutlined style={{ fontSize: "20px", color: "white" }} />}
+                  onClick={() => setSidebarVisible(false)}
+                />
+              </div>
+            )}
+            <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]} items={sidebarMenuItems} />
           </Sider>
           <Layout>
-            <Content style={{ padding: "20px" }}>
+            <Content style={{ padding: "20px", transition: "margin-left 0.3s ease-in-out" }}>
               <Routes>
                 <Route path="/" element={<h2>Home Page</h2>} />
                 <Route path="/about" element={<h2>About Page</h2>} />
@@ -63,10 +80,6 @@ const App = () => {
                 <Route path="/contact" element={<h2>Contact Page</h2>} />
                 <Route path="/blog" element={<h2>Blog Page</h2>} />
               </Routes>
-
-              <Button type="dashed" loading>
-                Click Me
-              </Button>
             </Content>
 
             <Footer style={{ textAlign: "center" }}>
