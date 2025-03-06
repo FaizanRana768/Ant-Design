@@ -1,11 +1,12 @@
 import { Layout } from "antd";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import Home from "../pages/Home";
 
 const { Content } = Layout;
 
 const routes = [
-  { path: "/", element: <h2>Home Page</h2> },
+  { path: "/", element: <Home /> },
   { path: "/about", element: <h2>About Page</h2> },
   { path: "/gallery", element: <h2>Gallery Page</h2> },
   { path: "/contact", element: <h2>Contact Page</h2> },
